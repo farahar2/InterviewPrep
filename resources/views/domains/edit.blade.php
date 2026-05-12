@@ -40,7 +40,7 @@
                 <!-- Color Picker -->
                 <div class="mb-8">
                     <label class="block text-sm font-semibold text-white mb-3">
-                        Couleur du badge <span class="text-status-review">*</span>
+                        Badge color <span class="text-status-review">*</span>
                     </label>
                     
                     <!-- Palette de couleurs prédéfinies -->
@@ -69,7 +69,7 @@
                         <div class="w-8 h-8 rounded-full border-2 border-dark-500" 
                              :style="'background-color: ' + selectedColor"></div>
                         <div>
-                            <p class="text-sm text-dark-300">Couleur sélectionnée</p>
+                            <p class="text-sm text-dark-300">Selected color</p>
                             <p class="text-sm font-mono text-white" x-text="selectedColor"></p>
                         </div>
                     </div>
@@ -86,14 +86,14 @@
                 <div class="flex items-center justify-between pt-6 border-t border-dark-700">
                     <a href="{{ route('domains.index') }}" 
                        class="px-6 py-3 bg-dark-700 hover:bg-dark-600 text-white font-medium rounded-lg transition">
-                        Annuler
+                        Cancel
                     </a>
                     <button type="submit" 
                             class="px-8 py-3 bg-status-mastered hover:bg-status-mastered/80 text-white font-semibold rounded-lg transition inline-flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        Enregistrer les modifications
+                        Save changes
                     </button>
                 </div>
             </form>
@@ -105,18 +105,18 @@
                 <svg class="w-5 h-5 mr-2 text-status-review" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                 </svg>
-                Zone de danger
+                Danger zone
             </h3>
             <p class="text-dark-300 text-sm mb-4">
-                La suppression d'un domaine est définitive et supprimera également tous les concepts associés.
+                Deleting a domain is permanent and will also delete all associated concepts.
             </p>
             <form method="POST" action="{{ route('domains.destroy', $domain) }}" 
-                  onsubmit="return confirm('⚠️ Êtes-vous absolument sûr ?\n\nCette action supprimera définitivement le domaine « {{ $domain->name }} » et tous ses concepts.\n\nCette action est irréversible.');">
+                  onsubmit="return confirm('⚠️ Are you absolutely sure?\n\nThis action will permanently delete the domain \"{{ $domain->name }}\" and all its concepts.\n\nThis action is irreversible.');">
                 @csrf
                 @method('DELETE')
                 <button type="submit" 
                         class="px-6 py-3 bg-status-review hover:bg-status-review/80 text-white font-semibold rounded-lg transition">
-                    Supprimer ce domaine
+                    Delete this domain
                 </button>
             </form>
         </div>
