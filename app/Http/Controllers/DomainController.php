@@ -35,7 +35,7 @@ class DomainController extends Controller
         Auth::user()->domains()->create($validated);
 
         // Redirection avec message de succès
-        return redirect()->route('domains.index')->with('success', 'Domaine créé avec succès !');
+        return redirect()->route('domains.index')->with('success', 'Domain created successfully!');
     }
 
     public function edit(string $id)
@@ -54,7 +54,7 @@ class DomainController extends Controller
         ]);
 
         $domain->update($validated);
-        return redirect()->route('domains.index')->with('success', 'Domaine mis à jour avec succès !');
+        return redirect()->route('domains.index')->with('success', 'Domain updated successfully!');
     }
 
     
@@ -62,6 +62,6 @@ class DomainController extends Controller
     {
         $this->authorize('delete', $domain);
         $domain->delete();
-        return redirect()->route('domains.index')->with('success', 'Domaine supprimé avec succès !');
+        return redirect()->route('domains.index')->with('success', 'Domain deleted successfully!');
     }
 }
