@@ -80,7 +80,7 @@
                         <div class="w-8 h-8 rounded-full border-2 border-dark-500" 
                              :style="'background-color: ' + selectedColor"></div>
                         <div>
-                            <p class="text-sm text-dark-300">Couleur sélectionnée</p>
+                            <p class="text-sm text-dark-300">Selected color</p>
                             <p class="text-sm font-mono text-white" x-text="selectedColor"></p>
                         </div>
                     </div>
@@ -97,14 +97,14 @@
                 <div class="flex items-center justify-between pt-6 border-t border-dark-700">
                     <a href="{{ route('domains.index') }}" 
                        class="px-6 py-3 bg-dark-700 hover:bg-dark-600 text-white font-medium rounded-lg transition">
-                        Annuler
+                        Cancel
                     </a>
                     <button type="submit" 
                             class="px-8 py-3 bg-status-mastered hover:bg-status-mastered/80 text-white font-semibold rounded-lg transition inline-flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        Créer le domaine
+                        Create Domain
                     </button>
                 </div>
             </form>
@@ -116,11 +116,11 @@
                 <svg class="w-5 h-5 mr-2 text-status-mastered" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
                 </svg>
-                Astuce
+                Tip
             </h3>
             <p class="text-dark-300 text-sm">
-                Un domaine représente une catégorie technique (ex: Laravel, MySQL, Docker). 
-                Choisissez une couleur distinctive pour le retrouver facilement dans votre liste.
+                A domain represents a technical category (e.g., Laravel, MySQL, Docker). 
+                Choose a distinctive color to easily find it in your list.
             </p>
         </div>
     </div>

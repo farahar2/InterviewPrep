@@ -8,7 +8,7 @@
                 </svg>
             </a>
             <h2 class="font-bold text-3xl text-white">
-                Modifier le Domaine
+                Edit Domain
             </h2>
         </div>
     </x-slot>
@@ -19,10 +19,10 @@
                 @csrf
                 @method('PUT')
 
-                <!-- Nom du domaine -->
+                <!-- Domain name -->
                 <div class="mb-6">
                     <label for="name" class="block text-sm font-semibold text-white mb-2">
-                        Nom du domaine <span class="text-status-review">*</span>
+                        Domain name <span class="text-status-review">*</span>
                     </label>
                     <input type="text" 
                            name="name" 
