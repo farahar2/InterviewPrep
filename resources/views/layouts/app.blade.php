@@ -38,7 +38,7 @@
                                 <a href="{{ route('domains.index') }}" 
                                    class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out
                                    {{ request()->routeIs('domains.*') ? 'border-status-mastered text-white' : 'border-transparent text-dark-300 hover:text-white hover:border-dark-500' }}">
-                                    Domaines
+                                    Technical Domains
                                 </a>
                             </div>
                         </div>

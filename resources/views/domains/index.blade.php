@@ -2,14 +2,14 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-bold text-3xl text-white">
-                Mes Domaines Techniques
+                My Technical Domains
             </h2>
             <a href="{{ route('domains.create') }}" 
                class="bg-status-mastered hover:bg-status-mastered/80 text-white font-semibold px-6 py-3 rounded-lg transition duration-150 ease-in-out inline-flex items-center">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
-                Nouveau Domaine
+                New Domain
             </a>
         </div>
     </x-slot>
@@ -21,12 +21,12 @@
                 <svg class="mx-auto h-16 w-16 text-dark-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
-                <h3 class="mt-4 text-xl font-medium text-white">Aucun domaine</h3>
-                <p class="mt-2 text-dark-300">Commencez par créer votre premier domaine technique.</p>
+                <h3 class="mt-4 text-xl font-medium text-white">No domains yet</h3>
+                <p class="mt-2 text-dark-300">Start by creating your first technical domain.</p>
                 <div class="mt-6">
                     <a href="{{ route('domains.create') }}" 
                        class="inline-flex items-center px-6 py-3 bg-status-mastered hover:bg-status-mastered/80 text-white font-semibold rounded-lg transition">
-                        Créer mon premier domaine
+                        Create my first domain
                     </a>
                 </div>
             </div>
@@ -60,15 +60,15 @@
                                     <div class="py-1">
                                         <a href="{{ route('domains.edit', $domain) }}" 
                                            class="block px-4 py-2 text-sm text-dark-300 hover:bg-dark-600 hover:text-white">
-                                            Modifier
+                                            Edit
                                         </a>
                                         <form method="POST" action="{{ route('domains.destroy', $domain) }}" 
-                                              onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce domaine ?');">
+                                              onsubmit="return confirm('Are you sure you want to delete this domain?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" 
                                                     class="block w-full text-left px-4 py-2 text-sm text-status-review hover:bg-dark-600">
-                                                Supprimer
+                                                Delete
                                             </button>
                                         </form>
                                     </div>
@@ -79,7 +79,7 @@
                         <!-- Statistiques -->
                         <div class="mb-4">
                             <div class="flex items-center justify-between text-sm mb-2">
-                                <span class="text-dark-300">Progression</span>
+                                <span class="text-dark-300">Progress</span>
                                 <span class="font-semibold text-white">
                                     {{ $domain->mastered_concepts_count }} / {{ $domain->total_concepts_count }} concepts
                                 </span>
@@ -101,7 +101,7 @@
                         <!-- Bouton voir concepts -->
                         <a href="#" 
                            class="block w-full text-center bg-dark-700 hover:bg-dark-600 text-white font-medium py-2 rounded-lg transition">
-                            Voir les concepts
+                            View Concepts
                         </a>
                     </div>
                 @endforeach
