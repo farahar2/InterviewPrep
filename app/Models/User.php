@@ -29,4 +29,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+// Relation avec les domaines
+      public function domains()
+    {
+        return $this->hasMany(Domain::class);
+    }
 }
