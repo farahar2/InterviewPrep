@@ -98,11 +98,11 @@
                             </div>
                         </div>
 
-                        <!-- Bouton voir concepts -->
-                        <a href="{{ route('concepts.index', $domain) }}" 
-                           class="block w-full text-center bg-dark-700 hover:bg-dark-600 text-white font-medium py-2 rounded-lg transition">
-                            View Concepts
-                        </a>
+                      <!-- Bouton voir concepts (vers la ligne 90) -->
+<a href="{{ route('concepts.index', $domain) }}" 
+   class="block w-full text-center bg-dark-700 hover:bg-dark-600 text-white font-medium py-2 rounded-lg transition">
+    View concepts ({{ $domain->total_concepts_count }})
+</a>
                     </div>
                 @endforeach
             </div>
