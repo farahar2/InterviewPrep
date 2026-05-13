@@ -138,4 +138,29 @@ class ConceptController extends Controller
         return redirect()->route('concepts.index', $domain)
             ->with('success', 'Concept archived successfully!');
     }
+
+    public function archived(Domain $domain)
+    {
+        $this->authorize('view', $domain);
+
+        $concepts = $domain->concepts()
+            ->onlyTrashed()
+            ->latest()
+            ->get();
+
+        return view('concepts.archived', compact('domain', 'concepts'));
+    }
+
+    public function restore($id)
+    {
+        $concept = Concept::onlyTrashed()->findOrFail($id);
+
+        $this->authorize('restore', $concept);
+
+        $concept->restore();
+
+        return redirect()->route('concepts.archived', $concept->domain)
+            ->with('success', 'Concept restored successfully!');
+    }
+}
 }
