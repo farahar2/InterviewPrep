@@ -1,0 +1,134 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Concept;
+use App\Models\Domain;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class ConceptController extends Controller
+{
+    public function index(Domain $domain)
+    {
+        $this->authorize('view', $domain);
+
+        $concepts = $domain->concepts()
+            ->byStatus(request('status'))
+            ->byDifficulty(request('difficulty'))
+            ->latest()
+            ->get();
+
+        return view('concepts.index', compact('domain', 'concepts'));
+    }
+
+    public function create(Domain $domain)
+    {
+        $this->authorize('view', $domain);
+
+        return view('concepts.create', compact('domain'));
+    }
+
+    public function store(Request $request, Domain $domain)
+    {
+        $this->authorize('view', $domain);
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'explanation' => 'required|string',
+            'difficulty' => 'required|in:junior,mid,senior',
+        ]);
+
+        $domain->concepts()->create([
+            ...$validated,
+            'user_id' => Auth::id(),
+            'status' => 'to_review',
+        ]);
+
+        return redirect()->route('concepts.index', $domain)
+            ->with('success', 'Concept created successfully!');
+    }
+
+    public function show(Concept $concept)
+    {
+        $this->authorize('view', $concept);
+
+        return view('concepts.show', compact('concept'));
+    }
+
+    public function edit(Concept $concept)
+    {
+        $this->authorize('update', $concept);
+
+        return view('concepts.edit', compact('concept'));
+    }
+
+    public function update(Request $request, Concept $concept)
+    {
+        $this->authorize('update', $concept);
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'explanation' => 'required|string',
+            'difficulty' => 'required|in:junior,mid,senior',
+            'status' => 'required|in:to_review,in_progress,mastered',
+        ]);
+
+        $concept->update($validated);
+
+        return redirect()->route('concepts.show', $concept)
+            ->with('success', 'Concept updated successfully!');
+    }
+
+    public function updateStatus(Request $request, Concept $concept)
+    {
+        $this->authorize('update', $concept);
+
+        $validated = $request->validate([
+            'status' => 'required|in:to_review,in_progress,mastered',
+        ]);
+
+        $concept->update(['status' => $validated['status']]);
+
+        return response()->json([
+            'success' => true,
+            'status' => $concept->status,
+            'formatted_status' => $concept->formatted_status,
+        ]);
+    }
+
+    public function destroy(Concept $concept)
+    {
+        $this->authorize('delete', $concept);
+
+        $domain = $concept->domain;
+        $concept->delete();
+
+        return redirect()->route('concepts.index', $domain)
+            ->with('success', 'Concept archived successfully!');
+    }
+
+    public function archived(Domain $domain)
+    {
+        $this->authorize('view', $domain);
+
+        $concepts = $domain->concepts()
+            ->onlyTrashed()
+            ->latest()
+            ->get();
+
+        return view('concepts.archived', compact('domain', 'concepts'));
+    }
+
+    public function restore($id)
+    {
+        $concept = Concept::onlyTrashed()->findOrFail($id);
+
+        $this->authorize('restore', $concept);
+
+        $concept->restore();
+
+        return redirect()->route('concepts.archived', $concept->domain)
+            ->with('success', 'Concept restored successfully!');
+    }
+}

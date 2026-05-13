@@ -99,7 +99,7 @@
                         </div>
 
                         <!-- Bouton voir concepts -->
-                        <a href="#" 
+                        <a href="{{ route('concepts.index', $domain) }}" 
                            class="block w-full text-center bg-dark-700 hover:bg-dark-600 text-white font-medium py-2 rounded-lg transition">
                             View Concepts
                         </a>
