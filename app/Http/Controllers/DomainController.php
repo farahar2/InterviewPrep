@@ -38,27 +38,26 @@ class DomainController extends Controller
         return redirect()->route('domains.index')->with('success', 'Domain created successfully!');
     }
 
-    public function edit(string $id)
+    public function edit(Domain $domain)
     {
-      //Verification que le domaine appartient à l'utilisateur
         $this->authorize('update', $domain);
         return view('domains.edit', compact('domain'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, Domain $domain)
     {
         $this->authorize('update', $domain);
+        
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'color' => 'required|string|size:7', 
+            'color' => 'required|string|size:7',
         ]);
 
         $domain->update($validated);
         return redirect()->route('domains.index')->with('success', 'Domain updated successfully!');
     }
 
-    
-    public function destroy(string $id)
+    public function destroy(Domain $domain)
     {
         $this->authorize('delete', $domain);
         $domain->delete();
