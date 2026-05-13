@@ -53,6 +53,7 @@ class ConceptController extends Controller
         // Status is always 'to_review' for new concepts
         $domain->concepts()->create([
             ...$validated,
+            'user_id' => Auth::id(),
             'status' => 'to_review',
         ]);
 

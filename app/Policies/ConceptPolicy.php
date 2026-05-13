@@ -21,7 +21,7 @@ class ConceptPolicy
      */
     public function view(User $user, Concept $concept): bool
     {
-        return $user->id === $concept->domain->user_id;
+        return $user->id === $concept->domain?->user_id;
     }
 
     /**
@@ -37,7 +37,7 @@ class ConceptPolicy
      */
     public function update(User $user, Concept $concept): bool
     {
-        return $user->id === $concept->domain->user_id;
+        return $user->id === $concept->domain?->user_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class ConceptPolicy
      */
     public function delete(User $user, Concept $concept): bool
     {
-        return $user->id === $concept->domain->user_id;
+        return $user->id === $concept->domain?->user_id;
     }
 
     /**
@@ -53,7 +53,7 @@ class ConceptPolicy
      */
     public function restore(User $user, Concept $concept): bool
     {
-        return $user->id === $concept->domain->user_id;
+        return $user->id === $concept->domain?->user_id;
     }
 
     /**
@@ -61,6 +61,6 @@ class ConceptPolicy
      */
     public function forceDelete(User $user, Concept $concept): bool
     {
-        return $user->id === $concept->domain->user_id;
+        return $user->id === $concept->domain?->user_id;
     }
 }

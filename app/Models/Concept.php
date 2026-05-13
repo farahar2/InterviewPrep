@@ -11,12 +11,18 @@ class Concept extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'user_id',
         'domain_id',
         'title',
         'explanation',
         'difficulty',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function domain()
     {
