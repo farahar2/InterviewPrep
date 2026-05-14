@@ -7,7 +7,7 @@ use App\Models\Generation;
 use App\Services\GroqService;
 use Illuminate\Http\Request;
 use Exception;
-
+use Illuminate\Support\Facades\Log;
 class GenerationController extends Controller
 {
     /**
@@ -36,7 +36,7 @@ class GenerationController extends Controller
 
         } catch (Exception $e) {
             // Log error and show user-friendly message
-            \Log::error('Question generation failed: ' . $e->getMessage());
+          Log::error('Question generation failed: ' . $e->getMessage());
 
             return redirect()
                 ->route('concepts.show', $concept)
