@@ -40,6 +40,12 @@ Route::middleware('auth')->group(function () {
     // Quick status change (AJAX)
     Route::patch('/concepts/{concept}/status', [ConceptController::class, 'updateStatus'])
         ->name('concepts.update-status');
+
+    // Archived & Restore
+    Route::get('/domains/{domain}/concepts/archived', [ConceptController::class, 'archived'])
+        ->name('concepts.archived');
+    Route::patch('/concepts/{id}/restore', [ConceptController::class, 'restore'])
+        ->name('concepts.restore');
 });
 
 require __DIR__.'/auth.php';

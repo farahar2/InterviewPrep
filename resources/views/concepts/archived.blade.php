@@ -14,7 +14,7 @@
                         <h2 class="font-bold text-3xl text-white">Archived Concepts</h2>
                     </div>
                     <p class="text-dark-400 text-sm mt-1">
-                        {{ $domain->name }} &mdash; {{ $concepts->count() }} archived concepts
+                        {{ $domain->name }} &mdash; {{ $concepts->count() }} archived {{ Str::plural('concept', $concepts->count()) }}
                     </p>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                                 <h3 class="text-lg font-semibold text-white truncate">
                                     {{ $concept->title }}
                                 </h3>
-                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium 
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium
                                     {{ $concept->difficulty_color === 'difficulty-junior' ? 'bg-difficulty-junior/10 text-difficulty-junior' : '' }}
                                     {{ $concept->difficulty_color === 'difficulty-mid' ? 'bg-difficulty-mid/10 text-difficulty-mid' : '' }}
                                     {{ $concept->difficulty_color === 'difficulty-senior' ? 'bg-difficulty-senior/10 text-difficulty-senior' : '' }}">
@@ -57,7 +57,7 @@
                             <form method="POST" action="{{ route('concepts.restore', $concept->id) }}">
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" 
+                                <button type="submit"
                                         class="bg-dark-700 hover:bg-status-mastered/20 text-white font-medium px-5 py-2.5 rounded-lg transition inline-flex items-center">
                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>

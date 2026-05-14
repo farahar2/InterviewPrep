@@ -161,6 +161,5 @@ class ConceptController extends Controller
 
         return redirect()->route('concepts.archived', $concept->domain)
             ->with('success', 'Concept restored successfully!');
-    }
 }
 }
