@@ -9,34 +9,25 @@ class Generation extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     */
     protected $fillable = [
         'concept_id',
-        'questions',
+        'user_id',
+        'questions_count',
+        'prompt',
+        'response',
     ];
 
-    /**
-     * The attributes that should be cast.
-     */
     protected $casts = [
-        'questions' => 'array', // Automatically convert JSON to array
+        'response' => 'array',
     ];
 
-    /**
-     * RELATION: A generation belongs to a concept
-     */
     public function concept()
     {
         return $this->belongsTo(Concept::class);
     }
 
-    /**
- * RELATION: A concept has many AI-generated question sets
- */
-public function generations()
-{
-    return $this->hasMany(Generation::class);
-}
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

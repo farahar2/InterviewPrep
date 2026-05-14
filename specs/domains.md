@@ -1,17 +1,17 @@
-# Gestion des domaines
+# Domains Management
 
-## Modèle de données
+## Data Model
 
 ### Domain
 
-| Champ | Type | Description |
+| Field | Type | Description |
 |-------|------|-------------|
-| id | bigInteger | Clé primaire |
-| user_id | bigInteger | Relation vers User |
-| name | string(255) | Nom du domaine (ex: "Laravel ORM") |
-| color | string(7) | Couleur hexadécimale (ex: "#3B82F6") |
-| created_at | timestamp | Date de création |
-| updated_at | timestamp | Date de mise à jour |
+| id | bigInteger | Primary key |
+| user_id | bigInteger | Relationship to User |
+| name | string(255) | Domain name (e.g: "Laravel ORM") |
+| color | string(7) | Hexadecimal color (e.g: "#3B82F6") |
+| created_at | timestamp | Creation date |
+| updated_at | timestamp | Last update date |
 
 ### Relations
 
@@ -20,41 +20,41 @@
 
 ## Routes
 
-| Méthode | URI | Contrôleur | Méthode | Description |
-|---------|-----|------------|---------|-------------|
-| GET | /domains | DomainController | index | Liste des domaines avec stats |
-| GET | /domains/create | DomainController | create | Formulaire de création |
-| POST | /domains | DomainController | store | Créer un domaine |
-| GET | /domains/{domain} | DomainController | show | Détail d'un domaine |
-| GET | /domains/{domain}/edit | DomainController | edit | Formulaire d'édition |
-| PUT/PATCH | /domains/{domain} | DomainController | update | Mettre à jour un domaine |
-| DELETE | /domains/{domain} | DomainController | destroy | Supprimer un domaine |
+| Method | URI | Controller | Action | Description |
+|--------|-----|------------|--------|-------------|
+| GET | /domains | DomainController | index | List domains with stats |
+| GET | /domains/create | DomainController | create | Creation form |
+| POST | /domains | DomainController | store | Create domain |
+| GET | /domains/{domain} | DomainController | show | Domain detail |
+| GET | /domains/{domain}/edit | DomainController | edit | Edit form |
+| PUT/PATCH | /domains/{domain} | DomainController | update | Update domain |
+| DELETE | /domains/{domain} | DomainController | destroy | Delete domain |
 
-## Fonctionnalités
+## Features
 
-### 1. Lister les domaines
+### 1. List Domains
 
-- Afficher tous les domaines de l'utilisateur connecté
-- Pour chaque domaine, afficher : nom, couleur, badge avec stats (X maîtrisés / Y total)
-- Tri par date de création (plus récent en premier)
+- Display all domains for the authenticated user
+- For each domain, show: name, color, badge with stats (X mastered / Y total)
+- Sort by creation date (newest first)
 
-### 2. Créer un domaine
+### 2. Create Domain
 
-- Formulaire avec :
-  - Nom (required, max:255)
-  - Couleur (required, format hex #XXXXXX)
-- Redirection vers la liste après création
+- Form fields:
+  - Name (required, max:255)
+  - Color (required, hex format #XXXXXX)
+- Redirect to list after creation
 
-### 3. Modifier un domaine
+### 3. Edit Domain
 
-- Formulaire pré-rempli avec les données existantes
-- Mêmes validations que la création
+- Form pre-filled with existing data
+- Same validations as creation
 
-### 4. Supprimer un domaine
+### 4. Delete Domain
 
-- Confirmation avant suppression
-- Suppression en cascade des concepts associés
-- Redirection vers la liste après suppression
+- Confirmation before deletion
+- Cascade delete of associated concepts
+- Redirect to list after deletion
 
 ## Validation (Request)
 
@@ -69,7 +69,7 @@ rules: [
 
 ## UI/UX
 
-- Couleur affichée comme badge rond
-- Stats affichées sous forme "X/Y maîtrisés"
-- Boutons d'action : créer (bleu), modifier (orange), supprimer (rouge)
-- Messages flash pour les actions réussie
+- Color displayed as a round badge
+- Stats shown as "X/Y mastered"
+- Action buttons: create (blue), edit (orange), delete (red)
+- Flash messages for successful actions
