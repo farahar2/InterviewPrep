@@ -21,7 +21,7 @@ class GroqService
     /**
      * Model to use
      */
-    private string $model = 'llama3-8b-8192';
+  private string $model = 'llama-3.3-70b-versatile';
 
     public function __construct()
     {

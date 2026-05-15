@@ -34,51 +34,42 @@ class Concept extends Model
         return $this->hasMany(Generation::class);
     }
 
-  
-     // ACCESSOR: Format difficulty for display
     public function getFormattedDifficultyAttribute()
     {
-        return match($this->difficulty) {
+        return match ($this->difficulty) {
             'junior' => 'Junior',
             'mid' => 'Mid',
             'senior' => 'Senior',
         };
     }
-     // ACCESSOR: Format status for display
 
     public function getFormattedStatusAttribute()
     {
-        return match($this->status) {
+        return match ($this->status) {
             'to_review' => 'To Review',
             'in_progress' => 'In Progress',
             'mastered' => 'Mastered',
         };
     }
 
-     // ACCESSOR: Get status color for badges
-     
     public function getStatusColorAttribute()
     {
-        return match($this->status) {
-            'to_review' => 'status-review',    // Red
-            'in_progress' => 'status-progress', // Orange
-            'mastered' => 'status-mastered',    // Green
+        return match ($this->status) {
+            'to_review' => 'status-review',
+            'in_progress' => 'status-progress',
+            'mastered' => 'status-mastered',
         };
     }
 
-  
-     // ACCESSOR: Get difficulty color for badges
-  
     public function getDifficultyColorAttribute()
     {
-        return match($this->difficulty) {
-            'junior' => 'difficulty-junior',   // Green
-            'mid' => 'difficulty-mid',         // Orange
-            'senior' => 'difficulty-senior',   // Red
+        return match ($this->difficulty) {
+            'junior' => 'difficulty-junior',
+            'mid' => 'difficulty-mid',
+            'senior' => 'difficulty-senior',
         };
     }
 
-     // SCOPE: Filter by status
     public function scopeByStatus($query, $status)
     {
         if ($status) {
@@ -87,8 +78,6 @@ class Concept extends Model
         return $query;
     }
 
-    
-     // SCOPE: Filter by difficulty
     public function scopeByDifficulty($query, $difficulty)
     {
         if ($difficulty) {

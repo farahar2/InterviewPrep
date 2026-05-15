@@ -1,25 +1,28 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    <div class="p-8">
+        <div class="mb-8 text-center">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Forgot Password?</h2>
+            <p class="text-gray-500 dark:text-dark-400 text-sm mt-2">No problem. Enter your email and we'll send you a reset link.</p>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
+        <x-auth-session-status class="mb-4" :status="session('status')" />
+
+        <form method="POST" action="{{ route('password.email') }}" class="space-y-5">
+            @csrf
+
+            <div>
+                <x-input-label for="email" :value="__('Email')" />
+                <x-text-input id="email" class="block mt-1.5 w-full" type="email" name="email" :value="old('email')" required autofocus placeholder="you@example.com" />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
+
+            <x-primary-button class="w-full justify-center py-3">
+                {{ __('Send Reset Link') }}
             </x-primary-button>
-        </div>
-    </form>
+
+            <p class="text-center text-sm text-gray-500 dark:text-dark-400">
+                <a href="{{ route('login') }}" class="text-status-mastered hover:text-status-mastered/80 font-medium transition-colors">Back to sign in</a>
+            </p>
+        </form>
+    </div>
 </x-guest-layout>

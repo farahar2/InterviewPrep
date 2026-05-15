@@ -161,5 +161,18 @@ class ConceptController extends Controller
 
         return redirect()->route('concepts.archived', $concept->domain)
             ->with('success', 'Concept restored successfully!');
-}
+    }
+
+    public function forceDelete($id)
+    {
+        $concept = Concept::onlyTrashed()->findOrFail($id);
+
+        $this->authorize('forceDelete', $concept);
+
+        $domain = $concept->domain;
+        $concept->forceDelete();
+
+        return redirect()->route('concepts.archived', $domain)
+            ->with('success', 'Concept permanently deleted!');
+    }
 }

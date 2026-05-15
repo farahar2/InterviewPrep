@@ -11,23 +11,15 @@ class Generation extends Model
 
     protected $fillable = [
         'concept_id',
-        'user_id',
-        'questions_count',
-        'prompt',
-        'response',
+        'questions',
     ];
 
     protected $casts = [
-        'response' => 'array',
+        'questions' => 'array',
     ];
 
     public function concept()
     {
         return $this->belongsTo(Concept::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 }

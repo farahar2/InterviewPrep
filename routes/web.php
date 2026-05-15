@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\ConceptController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DomainController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -9,9 +10,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -46,6 +47,14 @@ Route::middleware('auth')->group(function () {
         ->name('concepts.archived');
     Route::patch('/concepts/{id}/restore', [ConceptController::class, 'restore'])
         ->name('concepts.restore');
+    Route::delete('/concepts/{id}/force-delete', [ConceptController::class, 'forceDelete'])
+        ->name('concepts.force-delete');
+
+    // Generate interview questions
+    Route::post('/concepts/{concept}/generate', [GenerationController::class, 'store'])
+        ->name('generations.store');
+    Route::delete('/generations/{generation}', [GenerationController::class, 'destroy'])
+        ->name('generations.destroy');
 });
 
 require __DIR__.'/auth.php';
